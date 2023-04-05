@@ -3,7 +3,8 @@ import requests
 import pandas as pd
 import re
 import time
-
+import os
+import re
 
 def download_mp3(url, filename):
     response = requests.get(url)
@@ -71,9 +72,7 @@ del(numlist[-2:])
 #Get Links
 url = r'https://www.goethe-verlag.com/book2/EM/EMTE/EMTE003.HTM'
 
-#links = [f"https://www.goethe-verlag.com/book2/EM/EMTE/EMTE{num:03}.HTM" for num in range(3,103)]
-#had to change vpn and start from 60 onward lmao
-links = [f"https://www.goethe-verlag.com/book2/EM/EMTE/EMTE{num:03}.HTM" for num in range(85,103)]
+links = [f"https://www.goethe-verlag.com/book2/EM/EMTE/EMTE{num:03}.HTM" for num in range(3,103)]
 
 for url in links:
     print("connecting to url: {}".format(url))
@@ -84,9 +83,7 @@ for url in links:
     bulk_download(get_mp3_links(soup), english_text, telagu_text)
 
 
-
-import os
-import re
+#File Fixing Stuff here
 filelist = os.listdir(r'C:\Mining')
 regex_string = r'(.* - .*?)([A-Za-z])'
 filelist2 = []
@@ -95,4 +92,4 @@ for file in filelist:
 
 with open("derp.txt", "w") as f:
     for line in filelist2:
-        f.writelines(filelist2)
+        f.write(line + "\n")
